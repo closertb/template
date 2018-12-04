@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const args = process.argv;
-console.log(args);
 
 module.exports = {
   entry: './src/index.js',
@@ -26,8 +25,10 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      },
-      {
+      }, {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
