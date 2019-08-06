@@ -2,7 +2,7 @@ import React from 'react';
 import HomeDesc from '../../components/HomeDesc';
 import { siteName } from '../../configs/constants';
 
-export default class Root extends React.Component {
+export default class Root extends React.PureComponent {
   render() {
     return (
       <div>

@@ -7,11 +7,12 @@
  */
 import React from 'react';
 
-export default class HomeDesc extends React.Component {
+export default class HomeDesc extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   render() {
     const { name } = this.props;
     return (
