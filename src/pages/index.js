@@ -8,7 +8,7 @@ export default class Root extends React.PureComponent {
     return (
       <Router>
         <div>
-          <Route exact path="" component={Home} />
+          <Route exact path="/" component={Home} />
         </div>
       </Router>
     );

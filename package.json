@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "doddle-build dev",
-    "start": "doddle-build start"
+    "start": "doddle-build start --port 8900"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@doddle/doddle-build": "^0.0.11",
+    "@doddle/doddle-build": "^0.0.13",
     "@doddle/eslint-config-doddle": "^0.0.11"
   },
   "dependencies": {
