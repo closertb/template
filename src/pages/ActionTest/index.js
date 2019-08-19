@@ -2,13 +2,13 @@
 import React from 'react';
 import { connect } from 'dva';
 
-@connect(({ index }) => index, (dispatch) => ({
-    _add() {
-      dispatch({ type: 'index/add' });
-    },
-    _subtract() {
-      dispatch({ type: 'index/subtract' });
-    }
+@connect(({ index }) => ({ ...index }), dispatch => ({
+  _add() {
+    dispatch({ type: 'index/add' });
+  },
+  _subtract() {
+    dispatch({ type: 'index/subtract' });
+  }
 }))
 
 export default class Index extends React.PureComponent {
@@ -24,6 +24,7 @@ export default class Index extends React.PureComponent {
 
   render() {
     const { error, loading, count } = this.props;
+    console.log('count:', count);
     if (error) {
       return <div>{error.msg}</div>;
     }

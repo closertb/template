@@ -1,8 +1,8 @@
 import Home from './Home';
-import ProductCart from './Product';
+import ActionTest from './ActionTest';
 
 
 export default {
   Home,
-  ProductCart
+  ActionTest
 };

@@ -7,20 +7,28 @@ export default ({
     }
   },
   effects: {
-    * add(_, { select, updateState }) {
+    * add(_, { select, update }) {
       const { count } = yield select('index');
-      yield updateState({ count: count + 1 });
+      yield update({ count: count + 1 });
     },
-    * subtract(_, { select, updateState }) {
+    * subtract(_, { select, update }) {
       const { count } = yield select('index');
-      yield updateState({ count: count - 1 });
+      yield update({ count: count - 1 });
     }
   },
   subscriptions: {
     setup({ dispatch, listen }) {
-      listen('pages/index', () => {
+      listen('/action', () => {
         dispatch({ type: 'add' });
       });
+    }
+  },
+  reducers: {
+    updateCount(state, { payload }) {
+      return {
+        ...state,
+        count: payload.count
+      };
     }
   }
 });
