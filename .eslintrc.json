@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": ["@doddle/eslint-config-doddle"],
     "parserOptions": {
         "ecmaFeatures": {

@@ -1,11 +1,11 @@
 {
-  "name": "reactTemplate",
+  "name": "dvaTemplate",
   "version": "1.0.0",
-  "description": "a react project template",
+  "description": "a dva project template with doddle plugins",
   "main": "index.js",
   "scripts": {
     "dev": "doddle-build dev",
-    "start": "doddle-build start --port 8900"
+    "start": "doddle-build start --port 8905"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "dva": "^2.4.1",
+    "@doddle/dva": "~0.0.1"
   }
 }
