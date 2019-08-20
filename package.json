@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "doddle-build dev",
+    "qa": "doddle-build qa",
+    "pub": "doddle-build pub",
     "start": "doddle-build start --port 8905"
   },
   "repository": {
