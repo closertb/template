@@ -15,12 +15,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@doddle/doddle-build": "0.0.15",
-    "@doddle/eslint-config-doddle": "^0.0.11",
-    "less": "^3.9.0"
+    "@doddle/doddle-build": "0.0.16",
+    "@doddle/eslint-config-doddle": "^0.0.11"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
     "@doddle/dva": "~0.0.1",
     "dva": "^2.4.1",
     "react": "^16.2.0",

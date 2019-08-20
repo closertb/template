@@ -24,7 +24,6 @@ export default class Index extends React.PureComponent {
 
   render() {
     const { error, loading, count } = this.props;
-    console.log('count:', count);
     if (error) {
       return <div>{error.msg}</div>;
     }
