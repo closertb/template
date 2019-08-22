@@ -1,9 +1,6 @@
 {
     "extends": ["@doddle/eslint-config-doddle"],
     "parserOptions": {
-        "ecmaFeatures": {
-            "legacyDecorators": true
-        },
         "sourceType": "module"
     },
     "rules": {
