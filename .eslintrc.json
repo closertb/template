@@ -4,5 +4,6 @@
         "sourceType": "module"
     },
     "rules": {
+        "operator-linebreak": ["error", "after"]
     }
 }

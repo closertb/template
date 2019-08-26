@@ -8,6 +8,9 @@ import { connect } from 'dva';
   },
   _subtract() {
     dispatch({ type: 'index/subtract' });
+  },
+  login(payload) {
+    dispatch({ type: 'index/login', payload: { name: 'dom', pwd: '123456' } });
   }
 }))
 
@@ -23,7 +26,7 @@ export default class Index extends React.PureComponent {
   };
 
   render() {
-    const { error, loading, count } = this.props;
+    const { error, loading, count, login } = this.props;
     if (error) {
       return <div>{error.msg}</div>;
     }
@@ -33,6 +36,7 @@ export default class Index extends React.PureComponent {
         <span>计数:{count}</span>
         <button onClick={this.add}>加1</button>
         <button onClick={this.subtract}>减1</button>
+        <button onClick={login}>login</button>
       </div>
     );
   }
