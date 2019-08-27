@@ -3,7 +3,7 @@ const servers = {
     admin: 'http://localhost:8080',
   },
   production: {
-    admin: '//scf.56qq.com',
+    admin: '//server.closertb.site/client',
   },
 };
 
