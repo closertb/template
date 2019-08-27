@@ -1,5 +1,6 @@
 import dva from 'dva';
 import hook from '@doddle/dva';
+import 'antd/dist/antd.css';
 import './style/index.less';
 
 // Initialize

@@ -1,7 +1,11 @@
-export default [{
-  name: 'home',
-  path: '/home'
-}, {
-  name: 'action',
-  path: '/action'
-}];
+export default {
+  home: {
+    name: 'Home',
+    path: '/home',
+  },
+  action: {
+    name: 'ActionTest',
+    path: '/action',
+    icon: 'api',
+  }
+};
