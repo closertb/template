@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Form, Button } from 'antd';
 import { formRender } from 'antd-doddle';
-// import { bind } from 'antd-doddle/decorator';
+import { bind } from 'antd-doddle/decorator';
 import back from './back.jpg';
 import { fields } from './fields';
 import './index.less';
@@ -37,6 +37,7 @@ class Login extends React.Component {
     });
   }
 
+  @bind
   handleLogin() {
     const { login, form: { validateFields } } = this.props;
     validateFields((errors, values) => {

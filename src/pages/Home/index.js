@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Popconfirm } from 'antd';
 import { connect } from 'dva';
 import { EnhanceTable, WithSearch } from 'antd-doddle';
+import { bind } from 'antd-doddle/decorator';
 import { fields, searchFields } from './fields';
 
 @connect(({ home }) => ({ ...home }), dispatch => ({
@@ -30,6 +31,7 @@ export default class Root extends React.PureComponent {
     ];
   }
 
+  @bind
   handleAction() {
     const { onSearch } = this.props;
     onSearch({});
