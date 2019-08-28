@@ -1,6 +1,6 @@
 const servers = {
   local: {
-    admin: 'http://localhost:8080',
+    admin: '//server.closertb.site/client',
   },
   production: {
     admin: '//server.closertb.site/client',

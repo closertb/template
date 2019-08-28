@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Route, Switch, Link } from 'react-router-dom'; // HashRouter as Router,
 import { Layout, Menu, Icon } from 'antd';
+import { connect } from 'dva';
 import HeaderMap from '../components/HeaderMap';
 import menus from '../configs/menu';
 import { SITE_NAME } from '../configs/constants';
@@ -8,6 +9,11 @@ import Pages from '../pages';
 import styles from './index.less';
 
 const { Sider, Content } = Layout;
+@connect(({ layout }) => ({ ...layout }), dispatch => ({
+  logout() {
+    dispatch({ type: 'login/logout' });
+  }
+}))
 export default class Layer extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,6 +31,7 @@ export default class Layer extends PureComponent {
   }
 
   render() {
+    const { name, logout } = this.props;
     const { collapsed } = this.state;
     const hashArr = window.location.hash.split('/');
     const selectedHash = hashArr.length > 1 ? hashArr[1] : 'home';
@@ -52,8 +59,8 @@ export default class Layer extends PureComponent {
           <HeaderMap
             onToggle={this.toggle}
             collapsed={collapsed}
-            onLogout={() => { console.log('logout'); }}
-            username="denzel!"
+            onLogout={logout}
+            username={name}
           />
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
             <Switch>
