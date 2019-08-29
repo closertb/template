@@ -1,5 +1,5 @@
 import Http from '@doddle/http';
-// import { Modal } from 'antd';
+import { Modal } from 'antd';
 import cookie from 'js-cookie';
 import getServer from './server';
 
@@ -16,14 +16,13 @@ export default Http.create({
   },
   responseDataValidator(_response = {}) {
     if (_response.status !== 'ok') {
-/*       !isModalShow && Modal.error({
+      !isModalShow && Modal.error({
         title: '操作提示',
         content: _response.message || '请刷新页面或退出重新登录',
         onOk: () => {
           isModalShow = false;
         }
-      }); */
-      !isModalShow && console.error('操作提示', _response.message || '请刷新页面或退出重新登录');
+      });
       isModalShow = true;
       return true;
     }

@@ -62,7 +62,7 @@ export default class Layer extends PureComponent {
             onLogout={logout}
             username={name}
           />
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff', minHeight: 'auto' }}>
             <Switch>
               <Route exact path={menus.home.path} component={Pages.Home} />
               <Route exact path={menus.action.path} component={Pages.ActionTest} />
