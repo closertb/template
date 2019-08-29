@@ -1,5 +1,6 @@
 import dva from 'dva';
 import hook from '@doddle/dva';
+import { setApp } from 'antd-doddle/decorator';
 import 'antd/dist/antd.css';
 import './style/index.less';
 
@@ -20,8 +21,9 @@ function importAll(r) {
 importAll(require.context('./Layout', true, /model\.js$/));
 importAll(require.context('./pages', true, /model\.js$/));
 
+setApp(app);
+
 // Router
 app.router(require('./router').default);
-
 // Start
 app.start('#app');
