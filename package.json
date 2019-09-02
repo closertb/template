@@ -1,5 +1,6 @@
 {
-  "name": "dvaTemplate",
+  "name": "antd Template",
+  "title": "doddle antd",
   "version": "1.0.0",
   "description": "a dva project template with doddle plugins",
   "main": "index.js",
