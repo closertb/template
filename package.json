@@ -1,5 +1,6 @@
 {
   "name": "reactTemplate",
+  "title": "doddle react",
   "version": "1.0.0",
   "description": "a react project template",
   "main": "index.js",
@@ -15,8 +16,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@doddle/doddle-build": "^0.0.13",
-    "@doddle/eslint-config-doddle": "^0.0.11"
+    "@doddle/doddle-build": "^1.0.3",
+    "@doddle/eslint-config-doddle": "~0.0.13"
   },
   "dependencies": {
     "react": "^16.2.0",

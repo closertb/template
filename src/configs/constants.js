@@ -1,1 +1,1 @@
-export const siteName = 'Denzel Site';
+export const siteName = 'doddle react';
