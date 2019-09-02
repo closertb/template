@@ -1,4 +1,4 @@
-export const SITE_NAME = 'DVA模版';
+export const SITE_NAME = 'doddle dva';
 
 export const APP_CLIENT_ID = 336;
 
