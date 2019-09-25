@@ -1,5 +1,5 @@
 {
-  "name": "antd Template",
+  "name": "antdTemplate",
   "title": "doddle antd",
   "version": "1.0.0",
   "description": "a dva project template with doddle plugins",
@@ -23,10 +23,10 @@
     "babel-plugin-import": "^1.12.0"
   },
   "dependencies": {
-    "@doddle/dva": "~0.0.1",
-    "@doddle/http": "^1.0.0",
+    "@doddle/dva": "^1.0.0",
+    "@doddle/http": "^2.0.0",
     "antd": "^3.22.1",
-    "antd-doddle": "^1.0.3",
+    "antd-doddle": "^1.0.5",
     "dva": "^2.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

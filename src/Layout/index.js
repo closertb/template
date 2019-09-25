@@ -64,8 +64,9 @@ export default class Layer extends PureComponent {
           />
           <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff', minHeight: 'auto' }}>
             <Switch>
-              <Route exact path={menus.home.path} component={Pages.Home} />
-              <Route exact path={menus.action.path} component={Pages.ActionTest} />
+              {Object.values(menus).map(({ path, component }) => (
+                <Route exact key={path} path={path} component={Pages[component]} />
+              ))}
             </Switch>
           </Content>
         </Layout>
