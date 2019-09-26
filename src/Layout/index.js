@@ -22,8 +22,9 @@ export default function Layout() {
       </ul>
       <div style={{ height: '100%', paddingTop: 57, boxSizing: 'border-box' }}>
         <Switch>
-          <Route exact path="/home" component={Pages.Home} />
-          <Route exact path="/action" component={Pages.ActionTest} />
+          {menu.map(({ path, component }) => (
+            <Route exact key={path} path={path} component={Pages[component]} />
+          ))}
           {/* 其他 */}
           <Redirect to="/home" />
         </Switch>

@@ -22,8 +22,8 @@
     "@doddle/eslint-config-doddle": "~0.0.13"
   },
   "dependencies": {
-    "@doddle/dva": "~0.0.1",
-    "@doddle/http": "^1.0.0",
+    "@doddle/dva": "^1.0.0",
+    "@doddle/http": "^2.0.4",
     "dva": "^2.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

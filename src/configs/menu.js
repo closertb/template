@@ -1,7 +1,9 @@
 export default [{
   name: 'home',
-  path: '/home'
+  path: '/home',
+  component: 'Home'
 }, {
   name: 'action',
-  path: '/action'
+  path: '/action',
+  component: 'ActionTest'
 }];
