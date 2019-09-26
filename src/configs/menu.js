@@ -1,4 +1,4 @@
-export default [{
+export const Menu = [{
   name: 'home',
   path: '/home',
   component: 'Home'
@@ -7,3 +7,6 @@ export default [{
   path: '/action',
   component: 'ActionTest'
 }];
+
+
+export const ValidRoute = Menu.map(({ path }) => path);

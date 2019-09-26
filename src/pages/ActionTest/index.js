@@ -1,7 +1,10 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import { connect } from 'dva';
+import { CSSTransition } from 'react-transition-group';
 import style from './index.less';
+import './index.css';
+
 @connect(({ index }) => ({ ...index }), dispatch => ({
   _add() {
     dispatch({ type: 'index/add' });
@@ -15,6 +18,8 @@ import style from './index.less';
 }))
 
 export default class Index extends React.PureComponent {
+  state = { show: false }
+
   add = () => {
     const { _add } = this.props;
     _add();
@@ -25,8 +30,13 @@ export default class Index extends React.PureComponent {
     _subtract();
   };
 
+  handleShow = show => () => {
+    this.setState({ show });
+  }
+
   render() {
     const { error, loading, count, login, user } = this.props;
+    const { show } = this.state;
     if (error) {
       return <div>{error.msg}</div>;
     }
@@ -45,16 +55,35 @@ export default class Index extends React.PureComponent {
           </div>
         </div>
         <div className="block">
-          <h3>请求测试</h3>
+          <h3>动画测试</h3>
           <div>
             <div>
-              <button onClick={login}>login</button>
+              <button onClick={this.handleShow(true)}>淡入</button>
+              <button onClick={this.handleShow(false)}>淡出</button>
             </div>
             <div>
-              {loading.login ? <span>请求中</span> : <span>{user.name ? user.name : '未登录'}</span>}
+              <span>{show ? '显示' : '隐藏'}</span>
             </div>
           </div>
         </div>
+        <CSSTransition
+          in={show}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <div className="block">
+            <h3>请求测试</h3>
+            <div>
+              <div>
+                <button onClick={login}>login</button>
+              </div>
+              <div>
+                {loading.login ? <span>请求中</span> : <span>{user.name ? user.name : '未登录'}</span>}
+              </div>
+            </div>
+          </div>
+        </CSSTransition>
       </div>
     );
   }

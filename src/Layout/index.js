@@ -1,10 +1,11 @@
 import React from 'react';
-import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
-import menu from '../configs/menu';
+import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Menu, ValidRoute } from '../configs/menu';
 import Pages from '../pages';
 import styles from './index.less';
 
-export default function Layout() {
+export default function Layout(props) {
+  const { history: { location: { pathname } } } = props;
   return (
     <div className={styles.Layout}>
       <h4 className="user-info">
@@ -12,7 +13,7 @@ export default function Layout() {
         <span className="info-con">DenzelT !</span>
       </h4>
       <ul className="layout-menu">
-        {menu.map(({ name, path }) =>
+        {Menu.map(({ name, path }) =>
           // eslint-disable-next-line implicit-arrow-linebreak
           <li key={path}>
             <NavLink to={path} activeStyle={{ color: 'yellow' }}>{name}</NavLink>
@@ -21,13 +22,10 @@ export default function Layout() {
         )}
       </ul>
       <div style={{ height: '100%', paddingTop: 57, boxSizing: 'border-box' }}>
-        <Switch>
-          {menu.map(({ path, component }) => (
-            <Route exact key={path} path={path} component={Pages[component]} />
-          ))}
-          {/* 其他 */}
-          <Redirect to="/home" />
-        </Switch>
+        {Menu.map(({ path, component }) => (
+          <Route exact key={path} path={path} component={Pages[component]} />
+        ))}
+        {!ValidRoute.includes(pathname) && <Redirect from={pathname} to="/home" />}
       </div>
     </div>
   );
