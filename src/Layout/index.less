@@ -1,33 +1,97 @@
 .Layout {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  font-family: PingFangSC-Regular;
+
   :global {
+    .head {
+      position: relative;
+    }
+
+    .content {
+      flex: auto;
+      box-sizing: border-box;
+      background: #fafafa;
+    }
+
+    .foot {
+      padding: 42px 0 10px;
+      text-align: center;
+      background: #1E1D1F;
+      font-size: 14px;
+      color: #BEBEBE;
+      letter-spacing: 0.6px;
+    }
+
     .user-info {
       float: right;
-      margin:15px 30px 0 0;
-      color: white;
+      margin: 15px 30px 72px 18.75%;
       position: relative;
       z-index: 1;
     }
+
+    .site {
+      position: relative;
+      width: 30%;
+      padding: 18px 0 14px 10%;
+      z-index: 3;
+
+      .name {
+        font-size: 24px;
+        line-height: 24px;
+        color: #333333;
+        letter-spacing: 0.75px;
+      }
+
+      .address {
+        margin-top: 4px;
+        font-size: 20px;
+        color: #999999;
+        letter-spacing: 0.62px;
+        line-height: 20px;
+      }
+    }
+
     .layout-menu {
       position: absolute;
+      top: 0;
       right: 0;
       left: 0;
       display: flex;
-      justify-content: flex-start;
-      padding: 15px 30px;
-      font-size: 20px;
+      justify-content: flex-end;
+      padding: 32px 30px 32px 0;
       font-weight: 500;
-      background: #001529;
-      box-shadow: 0 0 3px #001529; 
+      // background: #FFFFFF;
+      box-shadow: 0 0 1px #666666;
+
       li {
-        color: white;
-        margin-right: 30px;
+        font-size: 18px;
+        line-height: 16px;
+        color: #666666;
+        letter-spacing: 1.12px;
+        margin-right: 70px;
       }
+
       a {
-        color: rgba(255, 255, 255, 0.90);
+        position: relative;
+        color: #666666;
         text-decoration: none;
+
+        &.selected,
         &:hover {
-          color: rgba(0, 255, 255, .6);
+          color: #333333;
+          font-weight: 600;
+
+          &::after {
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            content: '';
+            transition: all .5s ease-in;
+            border-bottom: 3px solid #FFD338;
+          }
         }
       }
     }
