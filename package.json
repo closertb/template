@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@doddle/dva": "^1.0.0",
-    "@doddle/http": "^2.0.4",
+    "@doddle/http": "^2.1.0",
     "dva": "^2.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

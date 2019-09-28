@@ -10,6 +10,6 @@ export function login(param) {
   }, { ignoreQuery: true });
 }
 
-export function signUp(param) {
-  return post('/web/customer/register', param, { ignoreQuery: true });
+export function getList(param) {
+  return post('/api/user/getList', param);
 }

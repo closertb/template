@@ -8,13 +8,19 @@ let isModalShow = false;
 function responseDataValidator(ctx, next) {
   const { _response = {} } = ctx;
   if (_response.status !== 'ok') {
-    !isModalShow && console.error('操作提示', _response.message || '请刷新页面或退出重新登录');
+    !isModalShow && window.alert(`操作提示, ${_response.message || '请刷新页面或退出重新登录'}`);
     isModalShow = true;
     return true;
   }
   return next();
 }
 
+async function httpLog(ctx, next) {
+  const start = Date.now();
+  await next();
+  const end = Date.now();
+  console.log('the resquest time is:', `${end - start}ms`);
+}
 export default Http.create({
   servers: getServer(),
   contentKey: 'content',
@@ -24,6 +30,7 @@ export default Http.create({
     const token = cookie.get('token');
     return token ? { token: `token:${token}` } : {};
   },
+  beforeRequest: [httpLog],
   beforeResponse: [responseDataValidator]
 });
 

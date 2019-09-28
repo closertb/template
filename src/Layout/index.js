@@ -16,7 +16,9 @@ export default function Layout(props) {
         </h4>}
       <h3 className="site">
         <div className="name">{SITE_NAME}</div>
-        <div className="address">{SITE_ADDRESS}</div>
+        <div className="address">
+          <a href={SITE_ADDRESS} target="_blank" rel="noopener noreferrer">{SITE_ADDRESS}</a>
+        </div>
       </h3>
       <ul className="layout-menu">
         {Menu.map(({ name, path }) =>

@@ -14,6 +14,12 @@ import './index.css';
   },
   login(payload) {
     dispatch({ type: 'index/login', payload: { name: 'dom', pwd: 'dom456' } });
+  },
+  loginSuccess(payload) {
+    dispatch({ type: 'index/login', payload: { name: 'dom', pwd: '123456' } });
+  },
+  getList(payload) {
+    dispatch({ type: 'index/getList', payload: { pn: 1, ps: 10 } });
   }
 }))
 
@@ -35,7 +41,7 @@ export default class Index extends React.PureComponent {
   }
 
   render() {
-    const { error, loading, count, login, user } = this.props;
+    const { error, loading, total, count, login, loginSuccess, user, getList } = this.props;
     const { show } = this.state;
     if (error) {
       return <div>{error.msg}</div>;
@@ -43,14 +49,25 @@ export default class Index extends React.PureComponent {
     return (
       <div className={style.Action}>
         <div className="block">
-          <h3>操作测试</h3>
+          <h3>登录测试</h3>
           <div>
             <div>
-              <button onClick={this.add}>加1</button>
-              <button onClick={this.subtract}>减1</button>
+              <button onClick={login}>loginFail</button>
+              <button onClick={loginSuccess}>loginSuccess</button>
             </div>
             <div>
-              <span>计数:{count}</span>
+              {loading.login ? <span>请求中</span> : <span>{user.name ? user.name : '未登录'}</span>}
+            </div>
+          </div>
+        </div>
+        <div className="block">
+          <h3>请求测试</h3>
+          <div>
+            <div>
+              <button onClick={getList}>获取数据</button>
+            </div>
+            <div>
+              {loading.getList ? <span>请求中</span> : <span>{total}</span>}
             </div>
           </div>
         </div>
@@ -73,13 +90,14 @@ export default class Index extends React.PureComponent {
           unmountOnExit
         >
           <div className="block">
-            <h3>请求测试</h3>
+            <h3>操作测试</h3>
             <div>
               <div>
-                <button onClick={login}>login</button>
+                <button onClick={this.add}>加1</button>
+                <button onClick={this.subtract}>减1</button>
               </div>
               <div>
-                {loading.login ? <span>请求中</span> : <span>{user.name ? user.name : '未登录'}</span>}
+                <span>计数:{count}</span>
               </div>
             </div>
           </div>

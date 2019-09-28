@@ -1,11 +1,13 @@
 import cookie from 'js-cookie';
-import { login } from './services';
+import { login, getList } from './services';
 
 export default ({
   namespace: 'index',
   state: {
     count: 0,
     user: {},
+    lsit: [],
+    total: 0,
     loading: {
       login: false
     }
@@ -28,6 +30,10 @@ export default ({
       cookie.set('token', token, expires);
       cookie.remove('lastPath');
       yield update({ user });
+    },
+    * getList({ payload }, { call, update }) {
+      const { total, list } = yield call(getList, payload);
+      yield update({ total, list });
     }
   },
   subscriptions: {
