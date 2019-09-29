@@ -1,26 +1,9 @@
-import dva from 'dva';
-import hook from '@doddle/dva';
-import './style/index.less';
+import { browserHistory } from 'dva/router';
+import createApp from './app';
 
-// Initialize
-const app = dva({
-  onError(e) {
-    console.log(e);
-  }
+const app = createApp({
+  history: browserHistory,
+  initialState: window.states ? JSON.parse(window.states) : {},
 });
-
-hook({ app });
-
-// 注册Model
-function importAll(r) {
-  r.keys().forEach(key => app.model(r(key).default));
-}
-
-importAll(require.context('./Layout', true, /model\.js$/));
-importAll(require.context('./pages', true, /model\.js$/));
-
-// Router
-app.router(require('./router').default);
-
-// Start
+delete window.states;
 app.start('#app');
