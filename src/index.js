@@ -1,26 +1,38 @@
-import dva from 'dva';
-import hook from '@doddle/dva';
+import React from 'react';
+import { render } from 'react-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-client';
+// import { withClientState } from 'apollo-link-state';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { resolvers, typeDefs, defaults } from './client/index';
+import LayoutRouter from './router';
 import './style/index.less';
 
 // Initialize
-const app = dva({
-  onError(e) {
-    console.log(e);
-  }
+const cache = new InMemoryCache();
+const client = new ApolloClient({
+  uri: 'https://api.github.com/graphql',
+  clientState: { resolvers, defaults, cache, typeDefs },
+  cache, // 本地数据存储
+  link: new HttpLink({
+    uri: 'https://api.github.com/graphql',
+    batchInterval: 10,
+    opts: {
+      credentials: 'cross-origin',
+    },
+  })
 });
 
-hook({ app });
-
-// 注册Model
-function importAll(r) {
-  r.keys().forEach(key => app.model(r(key).default));
+function App(props) {
+  console.log('his', props);
+  return (
+    <ApolloProvider client={client}>
+      <LayoutRouter />
+    </ApolloProvider>
+  );
 }
 
-importAll(require.context('./Layout', true, /model\.js$/));
-importAll(require.context('./pages', true, /model\.js$/));
-
-// Router
-app.router(require('./router').default);
-
-// Start
-app.start('#app');
+render((
+  <App />
+), document.getElementById('app'));

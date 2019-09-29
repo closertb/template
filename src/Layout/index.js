@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
 import { SITE_NAME, SITE_ADDRESS } from '../configs/constants';
-import { Menu, ValidRoute } from '../configs/menu';
+import { Menu } from '../configs/menu';
 import Pages from '../pages';
 import styles from './index.less';
 
@@ -30,13 +30,15 @@ export default function Layout(props) {
         )}
       </ul>
       <div className="content">
-        {Menu.map(({ path, component }) => (
-          <Route exact key={path} path={path} component={Pages[component]} />
-        ))}
-        {!ValidRoute.includes(pathname) && <Redirect from={pathname} to="/home" />}
+        <Switch>
+          {Menu.map(({ path, component }) => (
+            <Route exact key={path} path={path} component={Pages[component]} />
+          ))}
+          <Redirect from={pathname} to="/home" />
+        </Switch>
       </div>
       <footer className="foot">
-        <div>Copyright © 2019-2050 doddle site | some icp</div>
+        <div>Copyright © 2019-2050 吃饭不洗碗 | 蜀ICP备19031041号-1</div>
       </footer>
     </div>
   );
