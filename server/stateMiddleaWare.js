@@ -5,16 +5,13 @@ const cache = require('./cache');
 
 module.exports = async (ctx, next) => {
   const { params: { key } } = ctx;
-  console.log('key', key);
   let value;
   if (!key) {
     value = '';
   } else {
-    value = cache.get(`${cache.prefix}:state:${key}`);
+    value = cache.get(`state:${key}`);
   }
-  ctx.body = value || '';
-  ctx.res.type = 'text/javascript';
-
+  ctx.response.set('Content-Type', 'text/javascript');
   if (value) {
     ctx.body = `window.states = ${JSON.stringify(value)};`;
   } else {
@@ -25,6 +22,7 @@ module.exports = async (ctx, next) => {
 
 module.exports.set = (stateString) => {
   const key = randomstring.generate() + Date.now();
-  cache.set(`${cache.prefix}:state:${key}`, stateString);
+  cache.set(`state:${key}`, stateString);
+  console.log('cache', key, stateString);
   return key;
 };

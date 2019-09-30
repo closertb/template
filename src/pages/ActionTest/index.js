@@ -41,7 +41,7 @@ export default class Index extends React.PureComponent {
   }
 
   render() {
-    const { error, loading, total, count, login, loginSuccess, user, getList } = this.props;
+    const { error, loading = {}, total, count, login, loginSuccess, user = {}, getList } = this.props;
     const { show } = this.state;
     if (error) {
       return <div>{error.msg}</div>;

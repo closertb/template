@@ -3,6 +3,7 @@ import createApp from './app';
 
 const app = createApp({
   history: browserHistory,
-  initialState: {},
-});
+  initialState: window.state ? JSON.parse(window.state) : {},
+}, true);
+delete window.state;
 app.start('#app');

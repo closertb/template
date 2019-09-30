@@ -27,22 +27,22 @@ function renderFullPage(html, stateKey) {
 }
 
 module.exports = async (ctx, next) => {
-  // const { url, method } = ctx;
+  const { url } = ctx;
   // const reducersMap = new Map();
   const initialState = { index: { state: { timeStamp: Date.now() } } };
   // let currentNamespace;
 
   // 缓存states
   const stateKey = stateServe.set(JSON.stringify(initialState));
-  const history = createMemoryHistory();
+  const history = createMemoryHistory({ });
+  history.push(url);
   const app = createApp({
     history,
     initialState,
   }, true);
-  const renderProps = { history };
+  const renderProps = { history, location: url };
   const html = renderToString(app.start()({ renderProps }));
-
+  // console.log('start render', html);
   ctx.body = renderFullPage(html, stateKey);
-  console.log('start render');
   await next();
 };

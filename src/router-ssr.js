@@ -1,11 +1,14 @@
 import React from 'react';
-import { StaticRouter as Router } from 'dva/router';
+import { Route, StaticRouter as Router } from 'dva/router';
 import Layout from './Layout';
 
-export default function ({ history }) {
+export default function ({ history, location }) {
   return (
-    <Router history={history}>
-      <Layout history={history} isServer />
+    <Router>
+      <Route path="/">
+        <Layout history={history} location={location} isServer />
+      </Route>
+      {/* <Layout history={history} location={location} isServer /> */}
     </Router>
   );
 }

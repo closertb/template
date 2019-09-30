@@ -1,16 +1,19 @@
 import React from 'react';
 import { HashRouter, StaticRouter, Switch, NavLink, Route, Redirect } from 'react-router-dom';
-// import { useDispatch } from 'redu';
 import { SITE_NAME, SITE_ADDRESS } from '../configs/constants';
 import menu from '../configs/menu';
 import Pages from '../pages';
 import styles from './index.less';
 
-export default function Layout({ isServer, history }) {
-  const { location: { pathname } } = history;
+const { Home, ActionTest } = Pages;
+export default function Layout({ isServer, location = {} }) {
+  const { pathname } = location;
   const Router = isServer ? StaticRouter : HashRouter;
+
+  const rProps = isServer ? { location } : {};
+  console.log('loca', location);
   return (
-    <Router>
+    <Router {...rProps}>
       <div className={styles.Layout}>
         {false &&
           <h4 className="user-info">
@@ -32,14 +35,20 @@ export default function Layout({ isServer, history }) {
           ))}
         </ul>
         <div className="content">
-          <Switch>
-            {menu.map(({ path, component }) => (
-              <Route exact key={path} path={path} component={Pages[component]} />
-            ))}
-            <Redirect from={pathname} push to="/home" />
-          </Switch>
+          {isServer ?
+            <>
+              <Route path="/home" component={Home} />
+              <Route path="/" component={ActionTest} />
+            </> :
+            <Switch>
+              {menu.map(({ path, component }) => (
+                <Route exact key={path} path={path} component={Pages[component]} />
+              ))}
+              <Redirect from={pathname} push to="/home" />
+            </Switch>}
         </div>
         <footer className="foot">
+          <div>before:{pathname}-after:{location.pathname}</div>
           <div>Copyright © 2019-2050 doddle site | some icp</div>
         </footer>
       </div>
