@@ -1,46 +1,48 @@
-import { createMemoryHistory } from 'dva/router';
-import { renderToString } from 'react-dom/server';
-import stateServe from './stateMiddleaWare';
-import createApp from '../common/create_app';
+const { createMemoryHistory } = require('history');
+const { renderToString } = require('react-dom/server');
+const stateServe = require('./stateMiddleaWare');
+const createApp = require('../src/app').default;
 
 function renderFullPage(html, stateKey) {
   return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="/index.css" />
-</head>
-<body>
-  <div id="root">
-    <div>
-      ${html}
-    </div>
-  </div>
-  <script type="text/javascript" src="/states/${stateKey}.js"></script>
-  <script src="/index.js"></script>
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width = device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+      <meta name="format-detection" content="telephone=no">
+      <meta name="format-detection" content="email=no">
+      <title>doddle dva</title>
+      <link href="/index.css" rel="stylesheet">
+    </head>
+    <body>
+      <div id="app" class="home">
+        ${html}
+      </div>
+      <script type="text/javascript" src="/states/${stateKey}.js"></script>
+      <script type="text/javascript" src="/index.js"></script>
+    </body>
+  </html>
   `;
 }
 
-export default async (ctx, next) => {
+module.exports = async (ctx, next) => {
   // const { url, method } = ctx;
   // const reducersMap = new Map();
-  const initialState = { timeStamp: Date.now() };
-  const renderProps = {};
+  const initialState = { index: { state: { timeStamp: Date.now() } } };
   // let currentNamespace;
 
   // 缓存states
   const stateKey = stateServe.set(JSON.stringify(initialState));
-
+  const history = createMemoryHistory();
   const app = createApp({
-    history: createMemoryHistory(),
+    history,
     initialState,
   }, true);
+  const renderProps = { history };
   const html = renderToString(app.start()({ renderProps }));
 
   ctx.body = renderFullPage(html, stateKey);
-
+  console.log('start render');
   await next();
 };

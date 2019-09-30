@@ -1,11 +1,11 @@
-import Router from 'koa-router';
-import stateMiddleaWare from './stateMiddleaWare';
-import ssrMiddleware from './ssrMiddleware';
+const Router = require('koa-router');
+const stateMiddleaWare = require('./stateMiddleaWare');
+const ssrMiddleware = require('./ssrMiddleware');
 
 const router = new Router();
-router.use('/state', stateMiddleaWare);
-router.use('/action', ssrMiddleware);
-router.use('/home', ssrMiddleware);
-router.use('/', ssrMiddleware);
+router.get('/state/:key', stateMiddleaWare);
+router.get('/', ssrMiddleware);
+router.get('/home', ssrMiddleware);
+router.get('/action', ssrMiddleware);
 
-export default router;
+module.exports = router;

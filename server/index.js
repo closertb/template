@@ -1,5 +1,12 @@
+const csshook = require('css-modules-require-hook');
+const lessParser = require('node-less').parse;
 require('@babel/register');
-// require('css-modules-require-hook')({
-//   generateScopedName: '[local]___[hash:base64:5]',
-// });
+
+csshook({
+  generateScopedName: '[local]_[hash:base64:5]',
+  extensions: ['.less', '.css'],
+  processorOpts: { parser: lessParser },
+  camelCase: true,
+});
+
 require('./server');

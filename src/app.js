@@ -1,16 +1,11 @@
 import dva from 'dva';
-import { RouterContext } from 'dva/router';
+import React from 'react';
 import hook from '@doddle/dva';
 import router from './router';
+import SsrRouter from './router-ssr';
+import * as models from './model';
 import './style/index.less';
 
-const pageModel = require.context('./pages', true, /model\.js$/);
-const layoutModel = require.context('./Layout', true, /model\.js$/);
-
-// 注册Model
-function importAll(app, r) {
-  r.keys().forEach(key => app.model(r(key).default));
-}
 /* // Initialize
 const app = dva({
   onError(e) {
@@ -32,11 +27,10 @@ app.start('#app');
 export default function createApp(opts = {}, isServer) {
   const app = dva(opts);
   hook({ app });
-  importAll(app, layoutModel);
-  importAll(app, pageModel);
+  Object.keys(models).forEach(key => app.model(models[key]));
   if (isServer) {
     app.router(({ renderProps }) => (
-      <RouterContext {...renderProps} />
+      <SsrRouter {...renderProps} />
     ));
   } else {
     app.router(router);

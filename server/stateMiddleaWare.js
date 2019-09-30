@@ -1,10 +1,11 @@
-import randomstring from 'randomstring';
-import cache from './cache';
+const randomstring = require('randomstring');
+const cache = require('./cache');
 
 // const EXPIRE = 10;
 
-export default async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const { params: { key } } = ctx;
+  console.log('key', key);
   let value;
   if (!key) {
     value = '';
