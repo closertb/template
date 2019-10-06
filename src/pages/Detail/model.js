@@ -1,24 +1,30 @@
+import gql from 'graphql-tag';
 import { OWNER, PROJECT } from '../../configs/constants';
 
-export const query = ({ pn = 1, ps = 10 }) => {
-  const total = pn * ps;
-  return `query {
-    repository(owner: ${OWNER}, name: ${PROJECT}) {
-      issues(last: ${total}, states:CLOSED) {
-        edges {
-          node {
-            title
-            url
-            labels(first:5) {
-              edges {
-                node {
-                  name
-                }
-              }
-            }
+export const sql = gql`query BlogDetail($number: Int!) {
+  repository(owner: ${OWNER}, name: ${PROJECT}) {
+    issue(number: $number) {
+      title
+      url
+      bodyHTML
+      updatedAt
+      comments(first:100) {
+        totalCount
+        nodes {
+          createdAt
+          bodyHTML
+          author {
+            login
+            avatarUrl
           }
         }
       }
+      reactions(first: 100) {
+        totalCount
+        nodes {
+          content
+        }
+      }
     }
-  }`;
-};
+  }
+}`;

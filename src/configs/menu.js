@@ -1,12 +1,23 @@
 export const Menu = [{
-  name: 'home',
-  path: '/home',
-  component: 'Home'
+  name: '首页',
+  path: '/blog',
+  component: 'Blog',
+  children: [{
+    path: '/blog/:id',
+    component: 'BlogDetail',
+  }]
 }, {
-  name: 'action',
-  path: '/action',
-  component: 'ActionTest'
+  name: '专项',
+  path: '/project',
+  component: 'NavCenter'
 }];
 
+export const Routes = Menu.reduce((pre, { children = [], ...others }) => pre.concat(others).concat(children), []);
 
-export const ValidRoute = Menu.map(({ path }) => path);
+export const NavMenu = [{
+  name: '数字华容道',
+  path: '/Klotski',
+}, {
+  name: '可视化演示',
+  path: '/chart',
+}];

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router } from 'react-router';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import Layout from './Layout';
 
-export default function ({ history = { location: { } } }) {
+export default function () {
   return (
-    <Router history={history}>
-      <Layout history={history} />
+    <Router>
+      <Route component={Layout} />
     </Router>
   );
 }

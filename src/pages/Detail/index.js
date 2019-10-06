@@ -1,43 +1,40 @@
 import React from 'react';
-import showdown from 'showdown';
-import HomeDesc from '../../components/HomeDesc';
-import { SITE_NAME } from '../../configs/constants';
+import QueryWithLoading from '../../components/QueryWithLoading';
+import { sql } from './model';
+import style from './index.less';
 
-const converter = new showdown.Converter();
-
-export default class Root extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.contentRef = React.createRef();
-    this.state = { html: '<h1>show me code</h1>' };
+export default function BlogDetail({ location: { pathname } }) {
+  const number = pathname.replace('/blog/', '');
+  if (typeof number !== 'string' && typeof +number !== 'number') {
+    return <div className="content-waring">路径无效</div>;
   }
 
-  handleTest = () => {
-    fetch('https://api.github.com/repos/closertb/MyBlog/issues').then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject();
-    }).then((data) => {
-      console.log('data', data);
-      const { body } = data[0];
-      const html = converter.makeHtml(body);
+  const param = { number: +number };
+  // const { loading, error, data = {} } = useQuery(query({ number }));
 
-      console.log('ref', this.contentRef);
-      console.log('data:', html);
-      // this.contentRef.append(html);
-      this.setState({ html });
-    });
-  }
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error :(</p>;
 
-  render() {
-    const { html } = this.state;
-    return (
-      <div>
-        <h1 onClick={this.handleTest}>this is a home page</h1>
-        <HomeDesc name={SITE_NAME} />
-        <div ref={this.contentRef} dangerouslySetInnerHTML={{ __html: html }} />
-      </div>
-    );
-  }
+  // const { repository: { issue: { title, url, bodyHTML, updatedAt } } } = data;
+
+  // if (bodyHTML === '') {
+  //   return <div className="content-waring">暂无内容</div>;
+  // }
+  return (
+    <QueryWithLoading sql={sql} query={param}>
+      {({ repository: { issue: { title, url, bodyHTML, updatedAt } } }) => (
+        <div className={style.Detail}>
+          <div className="header">
+            <h3 className="title">{title}</h3>
+            <div className="info">
+              <a href={url} target="_blank" rel="noopener noreferrer">原文链接</a>
+              <span>{updatedAt}</span>
+            </div>
+          </div>
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: bodyHTML }} />
+        </div>
+      )}
+    </QueryWithLoading>
+
+  );
 }

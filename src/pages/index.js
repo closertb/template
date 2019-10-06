@@ -1,8 +1,9 @@
-import Home from './Home';
-import ActionTest from './ActionTest';
-
+import Blog from './Blog';
+import NavCenter from './NavCenter';
+import BlogDetail from './Detail';
 
 export default {
-  Home,
-  ActionTest
+  Blog,
+  BlogDetail,
+  NavCenter
 };

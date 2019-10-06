@@ -16,6 +16,7 @@ const resolvers = {
       `;
       const previous = cache.readQuery({ query });
       const newTodo = {
+        // eslint-disable-next-line no-plusplus
         id: nextTodoId++,
         text,
         completed: false,
