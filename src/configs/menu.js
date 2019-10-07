@@ -18,4 +18,5 @@ export const Routes = Menu.reduce((pre, { children = [], ...others }) => pre.con
 export const NavMenu = [{
   name: '数字华容道',
   path: '/Klotski',
+  imgUrl: 'https://doddle.oss-cn-beijing.aliyuncs.com/article/klotski.png'
 }];
