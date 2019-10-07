@@ -47,7 +47,7 @@ export default function Layout(props) {
           {Routes.map(({ path, component }) => (
             <Route exact key={path} path={path} component={Pages[component]} />
           ))}
-          <Redirect from={pathname} to="/home" />
+          <Redirect from={pathname} to="/blog" />
         </Switch>
       </div>
       <footer className="foot">

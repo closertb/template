@@ -1,6 +1,4 @@
 const defaults = {
-  todos: [],
-  visibilityFilter: 'SHOW_ALL',
-  readStatus: '',
+  visibilityFilter: 'SHOW_ALL', // 暂未使用
 };
 export default defaults;

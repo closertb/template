@@ -1,6 +1,6 @@
 {
   "name": "blogTemplate",
-  "title": "doddle dva",
+  "title": "github blog",
   "version": "1.0.0",
   "description": "a dva project template with doddle plugins",
   "main": "index.js",
@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@doddle/doddle-build": "^1.0.3",
+    "@doddle/doddle-build": "^1.1.0",
     "@doddle/eslint-config-doddle": "~0.0.13"
   },
   "dependencies": {
@@ -27,12 +27,12 @@
     "apollo-link-http": "^1.5.16",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "js-cookie": "^2.2.1",
     "react": "^16.2.0",
     "react-apollo": "^2.1.8",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^5.1.1",
-    "react-transition-group": "^4.3.0",
-    "showdown": "^1.9.0"
+    "react-router-dom": "^5.1.1"
+  },
+  "webpack": {
+    "copyPublic": true
   }
 }

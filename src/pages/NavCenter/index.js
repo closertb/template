@@ -14,7 +14,7 @@ export default function NavCenter() {
               描述
             </div>
             <div>
-              <a href={path} className="button" target="_blank" rel="noopener noreferrer">跳转到</a>
+              <a href={`${path}/index.html`} className="button" target="_blank" rel="noopener noreferrer">跳转到</a>
             </div>
           </div>
         </div>
