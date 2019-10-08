@@ -3,4 +3,5 @@ node_modules/
 .idea/
 .vscode/
 .idea/vcs.xml
+public/**/*
 package-lock.json

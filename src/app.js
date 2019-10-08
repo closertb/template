@@ -24,7 +24,10 @@ app.router(router);
 app.start('#app');
 */
 
-export default function createApp(opts = {}, isServer) {
+export default function createApp(opts = {}, isServer, isSimple) {
+  if (isSimple) {
+    return <SsrRouter {...opts} />;
+  }
   const app = dva(opts);
   hook({ app });
   Object.keys(models).forEach(key => app.model(models[key]));

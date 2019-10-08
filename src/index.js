@@ -6,3 +6,5 @@ const app = createApp({
   initialState: {},
 });
 app.start('#app');
+
+console.log('start');

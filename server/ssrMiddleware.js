@@ -31,7 +31,9 @@ module.exports = async (ctx, next) => {
   // const reducersMap = new Map();
   const initialState = { index: { state: { timeStamp: Date.now() } } };
   // let currentNamespace;
-
+  const context = {
+    tag: 'ctx'
+  };
   // 缓存states
   const stateKey = stateServe.set(JSON.stringify(initialState));
   const history = createMemoryHistory({ });
@@ -40,8 +42,9 @@ module.exports = async (ctx, next) => {
     history,
     initialState,
   }, true);
-  const renderProps = { history, location: url };
-  const html = renderToString(app.start()({ renderProps }));
+  const renderProps = { history, location: url, context };
+  // const html = renderToString(createApp(renderProps, false, true));
+  const html = renderToString(app.start()({ renderProps }, false, true));
   // console.log('start render', html);
   ctx.body = renderFullPage(html, stateKey);
   await next();

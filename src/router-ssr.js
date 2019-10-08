@@ -1,14 +1,12 @@
 import React from 'react';
-import { Route, StaticRouter as Router } from 'dva/router';
+import { StaticRouter as Router } from 'react-router-dom';
 import Layout from './Layout';
 
-export default function ({ history, location }) {
+export default function ({ location, context }) {
+  console.log('location', location);
   return (
-    <Router>
-      <Route path="/">
-        <Layout history={history} location={location} isServer />
-      </Route>
-      {/* <Layout history={history} location={location} isServer /> */}
+    <Router location={location} context={context}>
+      <Layout location={location} context={context} isServer />
     </Router>
   );
 }

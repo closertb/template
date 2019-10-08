@@ -1,27 +1,9 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
-import { connect } from 'dva';
 import { CSSTransition } from 'react-transition-group';
 import style from './index.less';
 import './index.css';
 
-@connect(({ index }) => ({ ...index }), dispatch => ({
-  _add() {
-    dispatch({ type: 'index/add' });
-  },
-  _subtract() {
-    dispatch({ type: 'index/subtract' });
-  },
-  login(payload) {
-    dispatch({ type: 'index/login', payload: { name: 'dom', pwd: 'dom456' } });
-  },
-  loginSuccess(payload) {
-    dispatch({ type: 'index/login', payload: { name: 'dom', pwd: '123456' } });
-  },
-  getList(payload) {
-    dispatch({ type: 'index/getList', payload: { pn: 1, ps: 10 } });
-  }
-}))
 
 export default class Index extends React.PureComponent {
   state = { show: false }
@@ -37,6 +19,7 @@ export default class Index extends React.PureComponent {
   };
 
   handleShow = show => () => {
+    console.log('show', show);
     this.setState({ show });
   }
 

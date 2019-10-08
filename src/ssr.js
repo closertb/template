@@ -1,9 +1,12 @@
-import { browserHistory } from 'dva/router';
-import createApp from './app';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Layout from './Layout';
+import './style/index.less';
 
-const app = createApp({
-  history: browserHistory,
-  initialState: window.state ? JSON.parse(window.state) : {},
-}, true);
-delete window.state;
-app.start('#app');
+ReactDOM.hydrate(
+  <BrowserRouter>
+    <Layout isServer isWindow />
+  </BrowserRouter>,
+  document.getElementById('app')
+);
