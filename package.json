@@ -1,8 +1,8 @@
 {
   "name": "blogTemplate",
-  "title": "github blog",
+  "title": "your blog name",
   "version": "1.0.0",
-  "description": "a dva project template with doddle plugins",
+  "description": "a github blog template with doddle plugins",
   "main": "index.js",
   "scripts": {
     "pub": "doddle-build pub",
@@ -12,11 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/closertb/reactTemplate.git"
   },
-  "keywords": [],
-  "author": "",
+  "homepage": "http://closertb.github.io",
+  "keywords": ["github", "gtaphql", "blog"],
+  "author": "doddle",
   "license": "ISC",
   "devDependencies": {
-    "@doddle/doddle-build": "^1.1.0",
+    "@doddle/doddle-build": "^1.1.1",
     "@doddle/eslint-config-doddle": "~0.0.13"
   },
   "dependencies": {

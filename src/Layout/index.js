@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
-import { SITE_NAME, SITE_MOTTO, SITE_ADDRESS, GITHUB_URL, GITHUB_FORK_IMG } from '../configs/constants';
-import { Menu, Routes } from '../configs/menu';
+import { SITE_NAME, SITE_MOTTO, SITE_ADDRESS, GITHUB_URL, GITHUB_FORK_IMG } from 'configs/constants';
+import { Menu, Routes } from 'configs/menu';
 import Pages from '../pages';
 import styles from './index.less';
 
@@ -15,11 +15,6 @@ export default function Layout(props) {
 
   return (
     <div className={styles.Layout}>
-      {false &&
-        <h4 className="user-info">
-          <span className="info-label">欢迎你：</span>
-          <span className="info-con">DenzelT !</span>
-        </h4>}
       {GITHUB_URL &&
       <a className="github-click" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
         <img alt="an ckick pictrue" src={GITHUB_FORK_IMG} />
