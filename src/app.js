@@ -1,11 +1,12 @@
-import dva from 'dva';
+import { create } from 'dva-core';
 import React from 'react';
 import hook from '@doddle/dva';
-import router from './router';
+// import router from './router';
 import SsrRouter from './router-ssr';
 import * as models from './model';
 import './style/index.less';
 
+let _registered = false;
 /* // Initialize
 const app = dva({
   onError(e) {
@@ -28,15 +29,18 @@ export default function createApp(opts = {}, isServer, isSimple) {
   if (isSimple) {
     return <SsrRouter {...opts} />;
   }
-  const app = dva(opts);
+  const app = create(opts);
   hook({ app });
-  Object.keys(models).forEach(key => app.model(models[key]));
-  if (isServer) {
-    app.router(({ renderProps }) => (
-      <SsrRouter {...renderProps} />
-    ));
-  } else {
-    app.router(router);
+  if (!_registered) {
+    Object.keys(models).forEach(key => app.model(models[key]));
+    _registered = true;
   }
+  // if (isServer) {
+  //   app.router(({ renderProps }) => (
+  //     <SsrRouter {...renderProps} />
+  //   ));
+  // } else {
+  //   app.router(router);
+  // }
   return app;
 }
