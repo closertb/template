@@ -39,6 +39,7 @@ export default ({
   subscriptions: {
     setup({ dispatch, listen }) {
       listen('/action', () => {
+        console.log('in');
         dispatch({ type: 'add' });
       });
     }

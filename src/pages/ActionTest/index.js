@@ -1,10 +1,20 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { CSSTransition } from 'react-transition-group';
 import style from './index.less';
 import './index.css';
 
-
+@connect(({ index }) => ({ ...index }), dispatch => ({
+  dispatch,
+  _add() {
+    dispatch({ type: 'index/add' });
+  },
+  _subtract() {
+    dispatch({ type: 'index/subtract' });
+  }
+}))
 export default class Index extends React.PureComponent {
   state = { show: false }
 
