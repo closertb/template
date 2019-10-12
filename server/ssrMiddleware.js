@@ -1,6 +1,8 @@
 const { renderToString } = require('react-dom/server');
+const { matchPath } = require('react-router-dom');
 const stateServe = require('./stateMiddleaWare');
 const CreateDom = require('../src/server').default;
+const routes = require('../src/Layout/routes').default;
 
 function renderFullPage(html, stateKey) {
   return `
@@ -26,15 +28,28 @@ function renderFullPage(html, stateKey) {
 module.exports = async (ctx, next) => {
   const { url } = ctx;
   // const reducersMap = new Map();
-  const initialState = { index: { state: { timeStamp: Date.now() } } };
-  // let currentNamespace;
   const context = {
     tag: 'ctx'
   };
+
+  const renderProps = { location: url, context };
+
+  const server = CreateDom(renderProps);
+  const store = server.app._store;
+  // console.log('app', store);
+  // const initialState = { index: { state: { timeStamp: Date.now() } } };
+  const dataRequirements = routes
+    .filter(route => matchPath(url, route)) // filter matching paths
+    .map(route => route.component) // map to components
+    .filter(comp => comp.getInitialState) // check if components have data requirement
+    .map(comp => store.dispatch(comp.getInitialState({ count: 5 }))); // dispatch data requirement
+  // let currentNamespace;
+  // console.log('com', dataRequirements);
+  await Promise.all(dataRequirements);
   // 缓存states
+  const initialState = store.getState();
   const stateKey = stateServe.set(JSON.stringify(initialState));
-  const renderProps = { store: initialState, location: url, context };
-  const html = renderToString(CreateDom(renderProps));
+  const html = renderToString(server.render());
   ctx.body = renderFullPage(html, stateKey);
   await next();
 };

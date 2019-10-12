@@ -13,9 +13,10 @@ export default ({
     }
   },
   effects: {
-    * add(_, { select, update }) {
+    * add({ payload = {} }, { select, update }) {
       const { count } = yield select('index');
-      yield update({ count: count + 1 });
+      const base = payload.count || 1;
+      yield update({ count: count + base });
     },
     * subtract(_, { select, update }) {
       const { count } = yield select('index');
@@ -39,8 +40,7 @@ export default ({
   subscriptions: {
     setup({ dispatch, listen }) {
       listen('/action', () => {
-        console.log('in');
-        dispatch({ type: 'add' });
+        dispatch({ type: 'add', payload: { count: 5 } });
       });
     }
   },

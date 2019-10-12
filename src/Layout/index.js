@@ -21,7 +21,6 @@ function RedirectWithStatus({ from, to, status }) {
 
 export default function Layout({ location = {}, isWindow }) {
   let { pathname } = location;
-
   pathname = isWindow ? window.location.pathname : pathname;
   return (
     <div className={styles.Layout}>

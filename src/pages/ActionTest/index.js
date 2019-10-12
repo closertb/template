@@ -15,7 +15,7 @@ import './index.css';
     dispatch({ type: 'index/subtract' });
   }
 }))
-export default class Index extends React.PureComponent {
+export default class ActionTest extends React.PureComponent {
   state = { show: true }
 
   add = () => {
@@ -100,3 +100,8 @@ export default class Index extends React.PureComponent {
     );
   }
 }
+
+ActionTest.getInitialState = payload => ({
+  type: 'index/add',
+  payload
+});

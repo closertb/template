@@ -9,9 +9,13 @@ import './style/index.less';
 
 // ssr渲染，浏览器端渲染入口
 const history = createHistory();
-const app = createApp({ history });
-app.start();
 
+const app = createApp({
+  history,
+  initialState: window.states && JSON.parse(window.states),
+});
+app.start();
+delete window.states;
 const App = () => (
   <Provider store={app._store}>
     <Router history={history}>
