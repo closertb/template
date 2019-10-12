@@ -7,7 +7,7 @@ module.exports = {
   devtool: '#source-map',
 
   entry: {
-    index: './src/ssr.js',
+    index: './src/client.js',
   },
   mode: 'development',
   output: {

@@ -16,11 +16,11 @@ export default class HomeDesc extends React.PureComponent {
   render() {
     const { name } = this.props;
     return (
-      <div style={{ textAlign: 'center' }}>
+      <h2 style={{ textAlign: 'center' }}>
         Beautiful
         {name}
         Beautiful
-      </div>
+      </h2>
     );
   }
 }

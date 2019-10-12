@@ -4,6 +4,7 @@ import { SITE_NAME } from '../../configs/constants';
 
 export default class Root extends React.PureComponent {
   render() {
+    console.log('home');
     return (
       <div>
         <h1>this is a home page</h1>

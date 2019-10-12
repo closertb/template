@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, NavLink, Route, Redirect } from 'react-router-dom';
+import { Switch, NavLink, Route, Redirect } from 'react-router-dom';
 import { SITE_NAME, SITE_ADDRESS } from '../configs/constants';
 import menu from '../configs/menu';
 import Pages from '../pages';
@@ -19,7 +19,10 @@ function RedirectWithStatus({ from, to, status }) {
   );
 }
 
-function Content({ pathname }) {
+export default function Layout({ location = {}, isWindow }) {
+  let { pathname } = location;
+
+  pathname = isWindow ? window.location.pathname : pathname;
   return (
     <div className={styles.Layout}>
       {false &&
@@ -54,15 +57,4 @@ function Content({ pathname }) {
       </footer>
     </div>
   );
-}
-export default function Layout({ location = {}, isServer, isWindow }) {
-  let { pathname } = location;
-
-  pathname = isWindow ? window.location.pathname : pathname;
-  console.log('isServer', location, pathname, isWindow && window.location);
-  return isServer ?
-    <Content pathname={pathname} /> :
-    <HashRouter>
-      <Content pathname={pathname} />
-    </HashRouter>;
 }

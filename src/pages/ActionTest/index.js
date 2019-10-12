@@ -16,7 +16,7 @@ import './index.css';
   }
 }))
 export default class Index extends React.PureComponent {
-  state = { show: false }
+  state = { show: true }
 
   add = () => {
     const { _add } = this.props;
@@ -36,8 +36,9 @@ export default class Index extends React.PureComponent {
   render() {
     const { error, loading = {}, total, count, login, loginSuccess, user = {}, getList } = this.props;
     const { show } = this.state;
+    console.log('show', show);
     if (error) {
-      return <div>{error.msg}</div>;
+      return <div><span>{error.msg}</span></div>;
     }
     return (
       <div className={style.Action}>

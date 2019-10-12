@@ -1,7 +1,6 @@
-const { createMemoryHistory } = require('history');
 const { renderToString } = require('react-dom/server');
 const stateServe = require('./stateMiddleaWare');
-const createApp = require('../src/app').default;
+const CreateDom = require('../src/server').default;
 
 function renderFullPage(html, stateKey) {
   return `
@@ -16,9 +15,7 @@ function renderFullPage(html, stateKey) {
       <link href="/index.css" rel="stylesheet">
     </head>
     <body>
-      <div id="app" class="home">
-        ${html}
-      </div>
+      <div id="app" class="home">${html}</div>
       <script type="text/javascript" src="/states/${stateKey}.js"></script>
       <script type="text/javascript" src="/index.js"></script>
     </body>
@@ -36,16 +33,8 @@ module.exports = async (ctx, next) => {
   };
   // 缓存states
   const stateKey = stateServe.set(JSON.stringify(initialState));
-  const history = createMemoryHistory({ });
-  history.push(url);
-  const app = createApp({
-    history,
-    initialState,
-  }, true);
-  const renderProps = { history, location: url, context };
-  // const html = renderToString(createApp(renderProps, false, true));
-  const html = renderToString(app.start()({ renderProps }, false, true));
-  // console.log('start render', html);
+  const renderProps = { store: initialState, location: url, context };
+  const html = renderToString(CreateDom(renderProps));
   ctx.body = renderFullPage(html, stateKey);
   await next();
 };
