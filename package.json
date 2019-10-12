@@ -1,6 +1,6 @@
 {
-  "name": "dvaTemplate",
-  "title": "doddle dva",
+  "name": "ssrTemplate",
+  "title": "react ssr",
   "version": "1.0.0",
   "description": "a dva project template with doddle plugins",
   "main": "index.js",
