@@ -1,8 +1,7 @@
 import React from 'react';
 import { Switch, NavLink, Route, Redirect } from 'react-router-dom';
 import { SITE_NAME, SITE_ADDRESS } from '../configs/constants';
-import menu from '../configs/menu';
-import Pages from '../pages';
+import menu from './routes';
 import styles from './index.less';
 
 function RedirectWithStatus({ from, to, status }) {
@@ -46,7 +45,7 @@ export default function Layout({ location = {}, isWindow }) {
       <div className="content">
         <Switch>
           {menu.map(({ path, component }) => (
-            <Route exact key={path} path={path} component={Pages[component]} />
+            <Route exact key={path} path={path} component={component} />
           ))}
           <RedirectWithStatus status={301} from={pathname} push to="/home" />
         </Switch>
