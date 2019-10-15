@@ -34,6 +34,8 @@ module.exports = async (ctx, next) => {
 
   const renderProps = { location: url, context };
 
+  ctx.redirect('/', '/home');
+
   const server = CreateDom(renderProps);
   const store = server.app._store;
   // console.log('app', store);

@@ -8,6 +8,7 @@ const staticPath = '../public';
 const app = new Koa();
 
 app.use(staticSource(path.join(__dirname, staticPath)));
+
 app.use(router.routes())
   .use(router.allowedMethods());
 
