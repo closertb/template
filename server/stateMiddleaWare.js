@@ -23,6 +23,5 @@ module.exports = async (ctx, next) => {
 module.exports.set = (stateString) => {
   const key = randomstring.generate() + Date.now();
   cache.set(`state:${key}`, stateString);
-  console.log('cache', key, stateString);
   return key;
 };

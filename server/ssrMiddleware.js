@@ -4,7 +4,14 @@ const stateServe = require('./stateMiddleaWare');
 const CreateDom = require('../src/server').default;
 const routes = require('../src/Layout/routes').default;
 
-function renderFullPage(html, stateKey) {
+// 事先计算出有效的URL
+const validRoutes = routes.map(({ path }) => path);
+const routesTitle = routes.reduce((pre, { path, name }) => {
+  pre[path] = name;
+  return pre;
+}, {});
+
+function renderFullPage(html, stateKey, title = 'doddle') {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -13,7 +20,7 @@ function renderFullPage(html, stateKey) {
       <meta name="viewport" content="width = device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
       <meta name="format-detection" content="telephone=no">
       <meta name="format-detection" content="email=no">
-      <title>doddle dva</title>
+      <title>${title}</title>
       <link href="/index.css" rel="stylesheet">
     </head>
     <body>
@@ -27,31 +34,31 @@ function renderFullPage(html, stateKey) {
 
 module.exports = async (ctx, next) => {
   const { url } = ctx;
-  // const reducersMap = new Map();
-  const context = {
-    tag: 'ctx'
-  };
+  const renderProps = { location: url };
 
-  const renderProps = { location: url, context };
-
-  ctx.redirect('/', '/home');
+  // redirect to home when route is not a validRoutes
+  if (url === '/' || !validRoutes.includes(url)) {
+    ctx.redirect('/home');
+    return;
+  }
+  const title = routesTitle[url];
 
   const server = CreateDom(renderProps);
   const store = server.app._store;
-  // console.log('app', store);
-  // const initialState = { index: { state: { timeStamp: Date.now() } } };
   const dataRequirements = routes
     .filter(route => matchPath(url, route)) // filter matching paths
     .map(route => route.component) // map to components
     .filter(comp => comp.getInitialState) // check if components have data requirement
     .map(comp => store.dispatch(comp.getInitialState({ count: 5 }))); // dispatch data requirement
-  // let currentNamespace;
-  // console.log('com', dataRequirements);
+  // get initialState
   await Promise.all(dataRequirements);
-  // 缓存states
+
+  // cache states to genrate dynamic js
   const initialState = store.getState();
   const stateKey = stateServe.set(JSON.stringify(initialState));
+
+  // generate html source
   const html = renderToString(server.render());
-  ctx.body = renderFullPage(html, stateKey);
+  ctx.body = renderFullPage(html, stateKey, title);
   await next();
 };

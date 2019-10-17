@@ -1,11 +1,11 @@
 import Pages from '../pages';
 
 export default [{
-  name: 'home',
+  name: '主页',
   path: '/home',
   component: Pages.Home
 }, {
-  name: 'action',
+  name: '操作测试',
   path: '/action',
   component: Pages.ActionTest
 }];

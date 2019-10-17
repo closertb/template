@@ -4,8 +4,8 @@ const Koa = require('koa');
 const staticSource = require('koa-static');
 const router = require('./router');
 
-const staticPath = '../public';
 const app = new Koa();
+const staticPath = '../public';
 
 app.use(staticSource(path.join(__dirname, staticPath)));
 
