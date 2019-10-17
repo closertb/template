@@ -1,18 +1,29 @@
 import Http from '@doddle/http';
-// import { Modal } from 'antd';
+import fetch from 'isomorphic-unfetch';
 import cookie from 'js-cookie';
-import getServer from './server';
+import getServer, { isInBrowser } from './server';
 
 let isModalShow = false;
 
 function responseDataValidator(ctx, next) {
   const { _response = {} } = ctx;
+  const errorShow = isInBrowser ? window.alert : console.error;
   if (_response.status !== 'ok') {
-    !isModalShow && window.alert(`操作提示, ${_response.message || '请刷新页面或退出重新登录'}`);
+    !isModalShow && errorShow(`操作提示, ${_response.message || '请刷新页面或退出重新登录'}`);
     isModalShow = true;
     return true;
   }
   return next();
+}
+
+export async function fetchRequest(ctx, next) {
+  const { url, params } = ctx;
+  try {
+    ctx.response = await fetch(url, params);
+    return next();
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
 async function httpLog(ctx, next) {
@@ -21,7 +32,8 @@ async function httpLog(ctx, next) {
   const end = Date.now();
   console.log('the resquest time is:', `${end - start}ms`);
 }
-export default Http.create({
+
+const http = Http.create({
   servers: getServer(),
   contentKey: 'content',
   useMockProxyType: 2,
@@ -33,6 +45,9 @@ export default Http.create({
   beforeRequest: [httpLog],
   beforeResponse: [responseDataValidator]
 });
+
+// 替换原有的fetchRequest中间件, 位置原本为2，但增加了httpLog，所以就变成了3；
+http.use(fetchRequest, 3, 1);
 
 export function createApi(api, post) {
   const handler = {
@@ -47,3 +62,5 @@ export function createApi(api, post) {
   };
   return new Proxy(api, handler);
 }
+
+export default http;

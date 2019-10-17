@@ -101,7 +101,8 @@ export default class ActionTest extends React.PureComponent {
   }
 }
 
+// 模拟请求发起
 ActionTest.getInitialState = payload => ({
-  type: 'index/add',
+  type: 'index/login',
   payload
 });

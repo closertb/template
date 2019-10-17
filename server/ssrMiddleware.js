@@ -49,7 +49,7 @@ module.exports = async (ctx, next) => {
     .filter(route => matchPath(url, route)) // filter matching paths
     .map(route => route.component) // map to components
     .filter(comp => comp.getInitialState) // check if components have data requirement
-    .map(comp => store.dispatch(comp.getInitialState({ count: 5 }))); // dispatch data requirement
+    .map(comp => store.dispatch(comp.getInitialState({ count: 5, name: 'dom', pwd: '123456' })));
   // get initialState
   await Promise.all(dataRequirements);
 

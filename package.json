@@ -8,7 +8,7 @@
     "dev": "doddle-build dev",
     "qa": "doddle-build qa",
     "pub": "doddle-build pub",
-    "server": "webpack && NODE_ENV=development nodemon ./server",
+    "server": "webpack && NODE_ENV=local nodemon ./server",
     "start": "doddle-build start --port 8905"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "@doddle/http": "^2.1.0",
     "colors": "^1.3.3",
     "dva-core": "^2.0.0",
+    "isomorphic-unfetch": "^3.0.0",
     "koa": "^2.8.1",
     "koa-body": "^4.0.8",
     "koa-router": "^7.4.0",
