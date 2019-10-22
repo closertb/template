@@ -5,11 +5,11 @@
   "description": "a dva project template with doddle plugins",
   "main": "index.js",
   "scripts": {
-    "dev": "doddle-build dev",
+    "dev": "doddle-build dev --entry client --dist static --template none",
     "qa": "doddle-build qa",
     "pub": "doddle-build pub",
-    "server": "webpack && NODE_ENV=local nodemon ./server",
-    "start": "doddle-build start --port 8905"
+    "server": "npm run dev && NODE_ENV=local nodemon ./server",
+    "start": "doddle-build start --port 8906"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/register": "^7.6.2",
-    "@doddle/doddle-build": "^1.0.3",
+    "@doddle/doddle-build": "^1.2.1",
     "@doddle/eslint-config-doddle": "~0.0.13",
     "autoprefixer": "^9.6.1",
     "css-modules-require-hook": "^4.2.3",

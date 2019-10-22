@@ -1,9 +1,26 @@
 const { renderToString } = require('react-dom/server');
 const { matchPath } = require('react-router-dom');
+const fs = require('fs');
+const path = require('path');
 const stateServe = require('./stateMiddleaWare');
 const CreateDom = require('../src/server').default;
 const routes = require('../src/Layout/routes').default;
 
+const staticPath = '../static';
+const fileList = {
+  js: [],
+  css: []
+};
+fs.readdir(path.join(__dirname, staticPath), (err, files) => {
+  files.forEach((file) => {
+    if (/\.js$/.test(file)) {
+      fileList.js.push(file);
+    }
+    if (/\.css$/.test(file)) {
+      fileList.css.push(file);
+    }
+  });
+});
 // 事先计算出有效的URL
 const validRoutes = routes.map(({ path }) => path);
 const routesTitle = routes.reduce((pre, { path, name }) => {
@@ -12,6 +29,11 @@ const routesTitle = routes.reduce((pre, { path, name }) => {
 }, {});
 
 function renderFullPage(html, stateKey, title = 'doddle') {
+  console.log('file', fileList);
+  const { js, css } = fileList;
+  const jsList = js.map(url => `<script type="text/javascript" src="/${url}"></script>`).join('');
+  const cssList = css.map(url => `<link href="/${url}" rel="stylesheet">`).join('');
+
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -21,12 +43,12 @@ function renderFullPage(html, stateKey, title = 'doddle') {
       <meta name="format-detection" content="telephone=no">
       <meta name="format-detection" content="email=no">
       <title>${title}</title>
-      <link href="/index.css" rel="stylesheet">
+      ${cssList}
     </head>
     <body>
       <div id="app" class="home">${html}</div>
       <script type="text/javascript" src="/states/${stateKey}.js"></script>
-      <script type="text/javascript" src="/index.js"></script>
+      ${jsList}
     </body>
   </html>
   `;
