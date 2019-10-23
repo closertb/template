@@ -13,6 +13,9 @@ import './index.css';
   },
   _subtract() {
     dispatch({ type: 'index/subtract' });
+  },
+  login() {
+    dispatch({ type: 'index/login', payload: { dom: '1234', pwd: '123456' } });
   }
 }))
 export default class ActionTest extends React.PureComponent {
