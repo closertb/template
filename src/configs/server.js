@@ -2,6 +2,12 @@ const servers = {
   local: {
     admin: 'http://server.closertb.site/client', // http://localhost:8080
   },
+  dev: {
+    admin: 'http://server.closertb.site/client', // http://localhost:8080
+  },
+  qa: {
+    admin: 'http://server.closertb.site/client', // http://localhost:8080
+  },
   production: {
     admin: 'http://server.closertb.site/client',
   },

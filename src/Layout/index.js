@@ -4,20 +4,6 @@ import { SITE_NAME, SITE_ADDRESS } from '../configs/constants';
 import menu from './routes';
 import styles from './index.less';
 
-function RedirectWithStatus({ from, to, status }) {
-  return (
-    <Route
-      render={({ staticContext }) => {
-        // there is no `staticContext` on the client, so
-        // we need to guard against that here
-        if (staticContext) staticContext.status = status;
-        console.log('loca', staticContext, from);
-        return <Redirect from={from} to={to} />;
-      }}
-    />
-  );
-}
-
 export default function Layout({ location = {}, isWindow }) {
   let { pathname } = location;
   pathname = isWindow ? window.location.pathname : pathname;
@@ -47,7 +33,7 @@ export default function Layout({ location = {}, isWindow }) {
           {menu.map(({ path, component }) => (
             <Route exact key={path} path={path} component={component} />
           ))}
-          <RedirectWithStatus status={301} from={pathname} push to="/home" />
+          <Redirect from={pathname} to="/home" />
         </Switch>
       </div>
       <footer className="foot">

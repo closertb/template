@@ -1,10 +1,12 @@
-## dva template
-a dva project template
+## SSR template
+a ssr project template，关于这个项目的架构思路，可参考文章：[初探SSR，React + Koa + Dva-Core](https://github.com/closertb/closertb.github.io/issues/35)
 
 ## 使用步骤
 1. npm install // 安装依赖
 
 2. npm start // 开启本地在线调试
+
+3. npm run server // 开启本地服务端渲染调试
 
 ## 关于doddle/http
 用户名：dom  

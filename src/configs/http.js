@@ -9,9 +9,10 @@ function responseDataValidator(ctx, next) {
   const { _response = {} } = ctx;
   const errorShow = isInBrowser ? window.alert : console.error;
   if (_response.status !== 'ok') {
-    !isModalShow && errorShow(`操作提示, ${_response.message || '请刷新页面或退出重新登录'}`);
+    const msg = _response.message || '请刷新页面或退出重新登录';
+    !isModalShow && errorShow(`操作提示, ${msg}`);
     isModalShow = true;
-    return true;
+    return Promise.reject(new Error(msg));
   }
   return next();
 }

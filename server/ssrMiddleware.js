@@ -29,7 +29,6 @@ const routesTitle = routes.reduce((pre, { path, name }) => {
 }, {});
 
 function renderFullPage(html, stateKey, title = 'doddle') {
-  console.log('file', fileList);
   const { js, css } = fileList;
   const jsList = js.map(url => `<script type="text/javascript" src="/${url}"></script>`).join('');
   const cssList = css.map(url => `<link href="/${url}" rel="stylesheet">`).join('');
