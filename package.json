@@ -27,7 +27,7 @@
     "@doddle/eslint-config-doddle": "~0.0.13",
     "autoprefixer": "^9.6.1",
     "css-modules-require-hook": "^4.2.3",
-    "node-less": "^1.0.0",
+    "postcss-less": "^3.1.4",
     "nodemon": "^1.19.3",
     "webpack-node-externals": "^1.7.2"
   },

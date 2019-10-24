@@ -5,7 +5,7 @@ import * as models from './model';
 
 export default function createApp(opts) {
   const app = create(Object.assign({
-    onError(e) {
+    onError(e) { // 全局dispatch错误处理
       console.log(e);
     }
   }, opts));

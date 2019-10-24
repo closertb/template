@@ -1,5 +1,5 @@
 const csshook = require('css-modules-require-hook');
-const lessParser = require('node-less').parse;
+const lessParser = require('postcss-less').parse;
 require('@babel/register');
 
 csshook({
