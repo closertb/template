@@ -1,11 +1,13 @@
-FROM node:10.15.3
+FROM keymetrics/pm2:latest-alpine
 
 ADD . /app/
 
 WORKDIR /app
 
-RUN npm install --registry=http://npm.dev.56qq.com
+# Install app dependencies
+ENV NPM_CONFIG_LOGLEVEL warn
+RUN npm install --registry=https://registry.npmjs.org/
 
-EXPOSE 8091
+EXPOSE 8080
 
-CMD ["npm", "run", "client"]
+CMD [ "npm", "run", "client" ]
