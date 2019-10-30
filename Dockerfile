@@ -8,6 +8,6 @@ WORKDIR /app
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --registry=https://registry.npmjs.org/
 
-EXPOSE 8080
+EXPOSE 8091
 
 CMD [ "npm", "run", "client" ]

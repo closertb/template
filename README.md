@@ -22,10 +22,10 @@ a ssr project template，关于这个项目的架构思路，可参考文章：[
 详情请查看[README][1]
 
 ## 关于部署
-采用docker，默认使用pm2开启多线程, 如果你本地安装了docker，可本地尝试部署
+采用docker，默认使用pm2开启多进程, 如果你本地安装了docker，可本地尝试部署
 ```sh
 docker image build ./ -t ssr
 
-docker run -p 80:8080 ssr // 将docker 8080端口暴露在外部80端口
+docker run -p 80:8091 ssr // 将docker 8091端口暴露在外部80端口
 ```
 [1]: https://github.com/closertb/doddle/tree/master/packages/doddle-build
