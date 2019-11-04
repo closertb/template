@@ -1,5 +1,6 @@
 ## SSR template
-a ssr project template，关于这个项目的架构思路，可参考文章：[初探SSR，React + Koa + Dva-Core](https://github.com/closertb/closertb.github.io/issues/35)
+a ssr project template，关于这个项目的架构思路，可参考文章：[初探SSR，React + Koa + Dva-Core](https://github.com/closertb/closertb.github.io/issues/35)  
+在线访问地址：http://client.closertb.site
 
 ## 使用步骤
 1. npm install // 安装依赖
