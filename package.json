@@ -11,7 +11,8 @@
     "dev:ssr": "doddle-build dev --entry client --dist static --template none",
     "pub:ssr": "doddle-build pub --entry client --dist static --template none",
     "server": "npm run dev:ssr && NODE_ENV=dev nodemon ./server",
-    "client": "npm run pub:ssr && pm2-runtime start pm2.json",
+    "client": "npm run pub:ssr && pm2 start pm2.json",
+    "docker": "npm run pub:ssr && pm2-runtime start pm2.json",
     "start": "doddle-build start --port 8906"
   },
   "repository": {

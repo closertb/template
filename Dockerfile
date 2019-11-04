@@ -10,4 +10,4 @@ RUN npm install --registry=https://registry.npmjs.org/
 
 EXPOSE 8091
 
-CMD [ "npm", "run", "client" ]
+CMD [ "npm", "run", "docker" ]
