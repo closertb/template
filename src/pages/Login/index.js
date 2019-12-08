@@ -21,8 +21,8 @@ export const formItemLayout = {
 };
 
 @connect(({ login }) => ({ ...login }), dispatch => ({
-  login() {
-    dispatch({ type: 'login/login', payload: { name: 'dom', pwd: '123456' } });
+  login(payload) {
+    dispatch({ type: 'login/login', payload });
   }
 }))
 

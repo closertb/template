@@ -12,7 +12,7 @@ export default Http.create({
   authorityFailureCodes: ['120001', '120002'],
   query() {
     const token = cookie.get('token');
-    return token ? { token: `token:${token}` } : {};
+    return token ? { token: `token:${token}` } : null;
   },
   responseDataValidator(_response = {}) {
     if (_response.status !== 'ok') {
@@ -20,6 +20,9 @@ export default Http.create({
         title: '操作提示',
         content: _response.message || '请刷新页面或退出重新登录',
         onOk: () => {
+          isModalShow = false;
+        },
+        onCancel: () => {
           isModalShow = false;
         }
       });

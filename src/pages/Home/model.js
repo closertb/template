@@ -2,7 +2,7 @@ import { getList } from './services';
 
 const initialSearch = {
   pn: 1,
-  ps: 10
+  ps: 5,
 };
 
 export default {
@@ -18,7 +18,7 @@ export default {
   effects: {
     * getList({ payload }, { call, update, select }) {
       const { search } = yield select('home');
-      const { list: datas, total } = yield call(getList, search);
+      const { datas, total } = yield call(getList, search);
       yield update({ datas, total });
     },
   },
