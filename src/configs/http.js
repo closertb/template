@@ -10,6 +10,9 @@ function responseDataValidator(ctx, next) {
   if (_response.status !== 'ok') {
     !isModalShow && window.alert(`操作提示, ${_response.message || '请刷新页面或退出重新登录'}`);
     isModalShow = true;
+    setTimeout(() => { // 这两句的目标是，防止多个modal频繁弹出
+      isModalShow = false;
+    });
     return true;
   }
   return next();
@@ -28,7 +31,7 @@ export default Http.create({
   authorityFailureCodes: ['120001', '120002'],
   query() {
     const token = cookie.get('token');
-    return token ? { token: `token:${token}` } : {};
+    return token ? { token: `token:${token}` } : null;
   },
   beforeRequest: [httpLog],
   beforeResponse: [responseDataValidator]
