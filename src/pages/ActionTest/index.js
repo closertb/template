@@ -72,7 +72,7 @@ export default class Index extends React.PureComponent {
           </div>
         </div>
         <div className="block">
-          <h3>动画测试</h3>
+          <h3>动画测试2</h3>
           <div>
             <div>
               <button onClick={this.handleShow(true)}>淡入</button>
