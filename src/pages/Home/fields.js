@@ -18,4 +18,7 @@ export const fields = [{
 }, {
   key: 'param_type',
   name: '类型'
+}, {
+  key: 'add_time',
+  name: '添加时间'
 }];
