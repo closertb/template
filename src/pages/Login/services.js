@@ -7,7 +7,3 @@ export function login(param) {
     ...param,
   }, { ignoreQuery: true });
 }
-
-export function signUp(param) {
-  return post('/web/customer/register', param, { ignoreQuery: true });
-}
