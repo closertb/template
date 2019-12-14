@@ -19,7 +19,6 @@ export default class HomeDesc extends React.PureComponent {
       <div style={{ textAlign: 'center' }}>
         Beautiful
         {name}
-        Beautiful
       </div>
     );
   }

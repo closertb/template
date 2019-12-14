@@ -6,7 +6,7 @@ import getServer from './server';
 let isModalShow = false;
 
 function responseDataValidator({ _response = {} }, next) {
-  console.log('stat', _response);
+  // console.log('stat', _response);
   if (_response.status !== 'ok') {
     !isModalShow && Modal.error({
       title: '操作提示',

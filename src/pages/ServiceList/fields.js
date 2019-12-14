@@ -28,7 +28,7 @@ export const fields = [{
   key: 'param_type',
   name: '类型'
 }, {
-  key: 'modify_time',
+  key: 'update_time',
   name: '更新时间',
   type: 'datetime'
 }];
