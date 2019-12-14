@@ -1,8 +1,9 @@
 import { getList } from './services';
+import { PAGE_SIZE } from '../../configs/constants';
 
 const initialSearch = {
   pn: 1,
-  ps: 5,
+  ps: PAGE_SIZE,
 };
 
 export default {

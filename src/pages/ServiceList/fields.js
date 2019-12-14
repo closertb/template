@@ -1,34 +1,51 @@
+
+const sceneEnums = {
+  common: '普通',
+  special: '特殊'
+};
+
 export const searchFields = [{
-  key: 'tag',
-  name: 'Tag',
+  key: 'scene_code',
+  name: '场景',
+  enums: sceneEnums,
+  type: 'select'
 }, {
-  key: 'server_name',
-  name: '服务名',
+  key: 'param_name',
+  name: '名称',
 }];
 
 export const fields = [{
-  key: 'tag',
-  name: 'Tag',
+  key: 'scene_code',
+  name: '场景',
+  enums: sceneEnums
 }, {
-  key: 'server_name',
-  name: '服务名',
+  key: 'param_code',
+  name: 'Code',
 }, {
-  key: 'retrans_host',
-  name: '转发域名',
+  key: 'param_name',
+  name: '名称',
 }, {
-  key: 'update_time',
+  key: 'param_type',
+  name: '类型'
+}, {
+  key: 'modify_time',
   name: '更新时间',
   type: 'datetime'
 }];
 
 export const editFields = [{
-  key: 'tag',
-  name: 'Tag',
-  disable: ({ tag }) => Boolean(tag)
+  key: 'scene_code',
+  name: '场景',
+  enums: sceneEnums,
+  type: 'select',
+  disable: detail => detail.scene_code === 'special'
 }, {
-  key: 'server_name',
-  name: '服务名',
+  key: 'param_code',
+  name: 'Code',
 }, {
-  key: 'retrans_host',
-  name: '转发域名',
+  key: 'param_name',
+  name: '名称',
+}, {
+  key: 'param_type',
+  name: '类型'
 }];

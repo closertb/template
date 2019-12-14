@@ -5,9 +5,6 @@ import { EnhanceTable, WithSearch } from 'antd-doddle';
 import { bind } from 'antd-doddle/decorator';
 import { fields, searchFields } from './fields';
 
-EnhanceTable.PN = 'pn';
-EnhanceTable.PS = 'ps';
-
 @connect(({ home }) => ({ ...home }), dispatch => ({
   onSearch(payload) {
     dispatch({ type: 'home/updateSearch', payload });

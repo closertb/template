@@ -1,3 +1,4 @@
+import React from 'react';
 import { Form } from 'antd';
 import { HModal, FormGroup } from 'antd-doddle';
 import { editFields } from './fields';

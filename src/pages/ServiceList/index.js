@@ -2,23 +2,23 @@ import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'dva';
 import { EnhanceTable, WithSearch } from 'antd-doddle';
-import bind from 'bind-decorator';
+import { bind } from 'antd-doddle/decorator';
 import { fields, searchFields } from './fields';
 import Edit from './Edit';
 
-@connect(({ home }) => ({ ...home }), dispatch => ({
+@connect(({ rule }) => ({ ...rule }), dispatch => ({
   onSearch(payload) {
-    dispatch({ type: 'home/updateSearch', payload });
-    dispatch({ type: 'home/getList' });
+    dispatch({ type: 'rule/updateSearch', payload });
+    dispatch({ type: 'rule/getList' });
   },
   onSave(payload) {
-    dispatch({ type: 'home/save', payload });
+    dispatch({ type: 'rule/save', payload });
   },
   onUpdate(payload) {
-    dispatch({ type: 'home/update', payload });
+    dispatch({ type: 'rule/update', payload });
   },
   onGetDetail(payload) {
-    dispatch({ type: 'home/getDetail', payload });
+    dispatch({ type: 'rule/getDetail', payload });
   }
 }))
 export default class Root extends React.PureComponent {
@@ -70,7 +70,7 @@ export default class Root extends React.PureComponent {
       search,
       datas,
       fields,
-      loading,
+      loading: { list: loading.getList },
       onSearch,
       total,
       extraFields: this.getExtraFields()
@@ -86,7 +86,7 @@ export default class Root extends React.PureComponent {
       visible,
       detail,
       title: detail.id ? '修改' : '新增',
-      confirmLoading: loading.confirmLoading,
+      confirmLoading: loading.update || loading.save || false,
     };
 
     return (

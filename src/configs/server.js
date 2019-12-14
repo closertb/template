@@ -1,7 +1,7 @@
 const servers = {
   local: {
     mock: '//server.closertb.site/client',
-    admin: 'http://localhost:3000',
+    admin: 'http://localhost:4001',
   },
   production: {
     admin: '//server.closertb.site/client',
